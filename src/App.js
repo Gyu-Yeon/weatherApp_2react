@@ -1,3 +1,4 @@
+/* eslint-diabled*/
 import sunny from "./sunny.png";
 import { React, useState, useEffect } from "react";
 import "./App.css";
@@ -18,6 +19,7 @@ function App() {
   let [modal, modalChange] = useState("false");
   let [temp, tempChange] = useState(0);
   let [clickDay, clickDayChange] = useState(["dateBox", "today", "dateBox"]);
+  let [input, inputChange] = useState("");
 
   function dayChange(num) {
     if (num === 0) {
@@ -64,6 +66,7 @@ function App() {
       })
       .catch(() => {
         console.log("fuck");
+        alert("invalid");
       });
   }
 
@@ -75,7 +78,13 @@ function App() {
     <div className="App">
       <div className="main-container">
         {modal === true ? (
-          <Modal modalChange={modalChange} modal={modal} />
+          <Modal
+            modalChange={modalChange}
+            modal={modal}
+            inputChange={inputChange}
+            input={input}
+            cityChange={cityChange}
+          />
         ) : null}
         <Nav time={time} modal={modal} modalChange={modalChange} />
         <Top city={city} today={today} />
@@ -100,17 +109,26 @@ function Modal(props) {
           props.modalChange(!props.modal);
         }}
       />
-      <form action="">
-        <TextField
-          id="filled-basic"
-          label="City"
-          variant="filled"
-          className="write"
-        />
-        <Button variant="contained" color="success" className="change">
-          Change
-        </Button>
-      </form>
+
+      <TextField
+        id="filled-basic"
+        label="City"
+        variant="filled"
+        className="write"
+        onChange={(e) => {
+          props.inputChange(e.target.value);
+        }}
+      />
+      <Button
+        variant="contained"
+        color="success"
+        className="change"
+        onClick={() => {
+          props.cityChange(props.input);
+        }}
+      >
+        Change
+      </Button>
     </div>
   );
 }

@@ -7,15 +7,16 @@ $rainy: linear-gradient(#70a6c8, #485188);
   margin-top: 100px;
   width: 378px;
   height: 700px;
-  background: $rainy;
+  background: $windy;
   position: relative;
 }
 .modal {
   width: 90%;
   height: 95%;
-  background-color: rgb(96, 200, 248);
+  background-color: rgb(34, 74, 206);
   position: absolute;
-  // opacity: 0.9;
+  z-index: 5;
+  opacity: 0.9;
   top: 2%;
   left: 5%;
   color: white;
