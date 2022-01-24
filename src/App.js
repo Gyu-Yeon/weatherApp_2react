@@ -8,6 +8,9 @@ import CloseIcon from "@mui/icons-material/Close";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
+import CloudQueueIcon from "@mui/icons-material/CloudQueue";
+import AcUnitIcon from "@mui/icons-material/AcUnit";
+import CloudTwoToneIcon from "@mui/icons-material/CloudTwoTone";
 import axios from "axios";
 
 function App() {
@@ -20,6 +23,8 @@ function App() {
   let [temp, tempChange] = useState(0);
   let [clickDay, clickDayChange] = useState(["dateBox", "today", "dateBox"]);
   let [input, inputChange] = useState("");
+  let [def, defChange] = useState("");
+  // let [mainContainer, mainContainerChange] = ["main-container"];
 
   function dayChange(num) {
     if (num === 0) {
@@ -54,6 +59,15 @@ function App() {
     timer();
   }, []);
 
+  // useEffect(() => {
+  //   if (hh > 18 && hh < 9) {
+  //     mainContainerChange(["main-container-night"]);
+  //   }
+  //   if (hh < 18 && hh > 9) {
+  //     mainContainerChange(["main-container"]);
+  //   }
+  // }, []);
+
   function getWeather() {
     axios
       .get(
@@ -62,6 +76,8 @@ function App() {
       .then((result) => {
         console.log(Math.floor(result.data.main.temp - 272));
         console.log(result.data);
+        console.log(result.data.weather[0].main);
+        defChange(result.data.weather[0].main);
         tempChange(Math.floor(result.data.main.temp - 272));
       })
       .catch(() => {
@@ -87,8 +103,8 @@ function App() {
           />
         ) : null}
         <Nav time={time} modal={modal} modalChange={modalChange} />
-        <Top city={city} today={today} />
-        <Weather />
+        <Top city={city} today={today} def={def} />
+        <Weather def={def} />
         <Temp temp={temp} />
         <Footer
           clickDay={clickDay}
@@ -162,16 +178,21 @@ function Top(props) {
         <h2 className="city">{props.city}</h2>
       </div>
       <div className="title-container">
-        <span className="weather-title">Sunny and Cloud</span>
+        <span className="weather-title">{props.def}</span>
       </div>
     </div>
   );
 }
 
-function Weather() {
+function Weather(props) {
   return (
     <div className="weather-container">
-      <LightModeOutlinedIcon className="sunny" />
+      {props.def === "Clouds" ? <CloudQueueIcon className="sunny" /> : null}
+      {props.def === "Clear" ? (
+        <LightModeOutlinedIcon className="sunny" />
+      ) : null}
+      {props.def === "Snow" ? <AcUnitIcon className="sunny" /> : null}
+      {props.def === "Haze" ? <CloudTwoToneIcon className="sunny" /> : null}
     </div>
   );
 }

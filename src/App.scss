@@ -1,13 +1,24 @@
-$suuny: linear-gradient(#ecae7d, #d05776);
+$sunny: linear-gradient(#ecae7d, #d05776);
+$sunnyNight: linear-gradient(#7dbbec, #57d0b1);
 $windy: linear-gradient(#c6d383, #66894f);
+$windyNight: linear-gradient(#9083d3, #724f89);
 $rainy: linear-gradient(#70a6c8, #485188);
+$rainyNight: linear-gradient(#801e0a, #887f48);
 
 .main-container {
   margin: auto;
   margin-top: 100px;
   width: 378px;
   height: 700px;
-  background: $windy;
+  background: $sunnyNight;
+  position: relative;
+}
+.main-container-night {
+  margin: auto;
+  margin-top: 100px;
+  width: 378px;
+  height: 700px;
+  background: $sunnyNight;
   position: relative;
 }
 .modal {
