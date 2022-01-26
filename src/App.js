@@ -106,7 +106,7 @@ function App() {
       .get(
         `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=dec0e12c272759881360e59f508b538c`
       )
-      .then(result => {
+      .then((result) => {
         console.log(Math.floor(result.data.main.temp - 272));
         console.log(result.data);
         console.log(result.data.weather[0].main);
@@ -181,7 +181,7 @@ function Modal(props) {
         label="City"
         variant="filled"
         className="write"
-        onChange={e => {
+        onChange={(e) => {
           props.inputChange(e.target.value);
         }}
       />
@@ -243,6 +243,7 @@ function Weather(props) {
       ) : null}
       {props.def === "Snow" ? <AcUnitIcon className="sunny" /> : null}
       {props.def === "Haze" ? <CloudTwoToneIcon className="sunny" /> : null}
+      {props.def === "Fog" ? <CloudTwoToneIcon className="sunny" /> : null}
     </div>
   );
 }
@@ -254,6 +255,7 @@ function Temp(props) {
     </div>
   );
 }
+
 function Footer(props) {
   return (
     <div className="footer-container">
@@ -261,7 +263,7 @@ function Footer(props) {
       <div className="footer-container-2">
         <div className={props.clickDay[0]}>
           <p
-            onClick={e => {
+            onClick={(e) => {
               props.dayChange(0);
             }}
           >
@@ -270,7 +272,7 @@ function Footer(props) {
         </div>
         <div className={props.clickDay[1]}>
           <p
-            onClick={e => {
+            onClick={(e) => {
               props.dayChange(1);
             }}
           >
@@ -279,7 +281,7 @@ function Footer(props) {
         </div>
         <div className={props.clickDay[2]}>
           <p
-            onClick={e => {
+            onClick={(e) => {
               props.dayChange(2);
             }}
           >
@@ -310,7 +312,7 @@ function Footer(props) {
             <span>14:00</span>
           </div>
           <div className="eachWeather">
-            <LightModeOutlinedIcon className="sun" />
+            <CloudQueueIcon className="sun" />
           </div>
         </div>
         <div className="sunset-box timetable-box">
@@ -318,7 +320,7 @@ function Footer(props) {
             <span>16:00</span>
           </div>
           <div className="eachWeather">
-            <LightModeOutlinedIcon className="sun" />
+            <CloudQueueIcon className="sun" />
           </div>
         </div>
         <div className="eve-box timetable-box">
@@ -326,7 +328,7 @@ function Footer(props) {
             <span>18:00</span>
           </div>
           <div className="eachWeather">
-            <LightModeOutlinedIcon className="sun" />
+            <CloudQueueIcon className="sun" />
           </div>
         </div>
       </div>
@@ -335,16 +337,16 @@ function Footer(props) {
           <span>18°</span>
         </div>
         <div className="eachTimeWeather2 wbox">
-          <span>18°</span>
+          <span>20°</span>
         </div>
         <div className="eachTimeWeather3 wbox">
-          <span>18°</span>
+          <span>19°</span>
         </div>
         <div className="eachTimeWeather4 wbox">
           <span>18°</span>
         </div>
         <div className="eachTimeWeather5 wbox">
-          <span>18°</span>
+          <span>15°</span>
         </div>
       </div>
     </div>
