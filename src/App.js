@@ -15,7 +15,31 @@ import axios from "axios";
 
 function App() {
   let [city, cityChange] = useState("Seoul");
-  let [today, todayChange] = useState("Sunday 23rd January");
+  let [today, todayChange] = useState("");
+  let [week, weekChange] = useState([
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ]);
+  let [month, monthChange] = useState([
+    "January",
+    "Febuary",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ]);
+  let [dateNum, dateNumChange] = useState("");
   let [time, timeChange] = useState("");
   let [hh, hhChange] = useState("");
   let [mm, mmChange] = useState("");
@@ -24,8 +48,29 @@ function App() {
   let [clickDay, clickDayChange] = useState(["dateBox", "today", "dateBox"]);
   let [input, inputChange] = useState("");
   let [def, defChange] = useState("");
-  // let [mainContainer, mainContainerChange] = ["main-container"];
+  let [mainContainer, mainContainerChange] = useState("main-container");
 
+  // functions
+  function todayy() {
+    let d = new Date();
+    let thisMonth = month[d.getMonth()];
+    let thisWeek = week[d.getDay()];
+    let thisDate = d.getDate();
+    if (thisDate === 1 || thisDate === 21 || thisDate === 31) {
+      dateNum = "st";
+    } else if (thisDate === 2 || thisDate === 22) {
+      dateNum = "nd";
+    } else if (thisDate === 3) {
+      dateNum = "rd";
+    } else {
+      dateNum = "th";
+    }
+    console.log(thisWeek);
+    console.log(thisDate);
+    console.log(thisMonth);
+
+    todayChange(`${thisWeek}   ${thisDate}${dateNum}   ${thisMonth}`);
+  }
   function dayChange(num) {
     if (num === 0) {
       let days = ["today", "dateBox", "dateBox"];
@@ -55,25 +100,13 @@ function App() {
       timeChange(hh + ":" + mm);
     }, 1000);
   }
-  useEffect(() => {
-    timer();
-  }, []);
-
-  // useEffect(() => {
-  //   if (hh > 18 && hh < 9) {
-  //     mainContainerChange(["main-container-night"]);
-  //   }
-  //   if (hh < 18 && hh > 9) {
-  //     mainContainerChange(["main-container"]);
-  //   }
-  // }, []);
 
   function getWeather() {
     axios
       .get(
         `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=dec0e12c272759881360e59f508b538c`
       )
-      .then((result) => {
+      .then(result => {
         console.log(Math.floor(result.data.main.temp - 272));
         console.log(result.data);
         console.log(result.data.weather[0].main);
@@ -82,17 +115,34 @@ function App() {
       })
       .catch(() => {
         console.log("fuck");
-        alert("invalid");
+        alert("invalid city name");
       });
   }
+
+  function background() {
+    mainContainerChange(def);
+  }
+
+  //useEffect
+  useEffect(() => {
+    timer();
+  }, []);
 
   useEffect(() => {
     getWeather();
   }, [city]);
+  useEffect(() => {
+    background();
+  });
 
+  useEffect(() => {
+    todayy();
+  }, []);
+
+  //components
   return (
     <div className="App">
-      <div className="main-container">
+      <div className={mainContainer}>
         {modal === true ? (
           <Modal
             modalChange={modalChange}
@@ -131,7 +181,7 @@ function Modal(props) {
         label="City"
         variant="filled"
         className="write"
-        onChange={(e) => {
+        onChange={e => {
           props.inputChange(e.target.value);
         }}
       />
@@ -183,7 +233,7 @@ function Top(props) {
     </div>
   );
 }
-
+//Mist 추가하기
 function Weather(props) {
   return (
     <div className="weather-container">
@@ -211,7 +261,7 @@ function Footer(props) {
       <div className="footer-container-2">
         <div className={props.clickDay[0]}>
           <p
-            onClick={(e) => {
+            onClick={e => {
               props.dayChange(0);
             }}
           >
@@ -220,7 +270,7 @@ function Footer(props) {
         </div>
         <div className={props.clickDay[1]}>
           <p
-            onClick={(e) => {
+            onClick={e => {
               props.dayChange(1);
             }}
           >
@@ -229,7 +279,7 @@ function Footer(props) {
         </div>
         <div className={props.clickDay[2]}>
           <p
-            onClick={(e) => {
+            onClick={e => {
               props.dayChange(2);
             }}
           >
