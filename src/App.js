@@ -11,6 +11,8 @@ import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import CloudQueueIcon from "@mui/icons-material/CloudQueue";
 import AcUnitIcon from "@mui/icons-material/AcUnit";
 import CloudTwoToneIcon from "@mui/icons-material/CloudTwoTone";
+import UmbrellaIcon from "@mui/icons-material/Umbrella";
+import InvertColorsTwoToneIcon from "@mui/icons-material/InvertColorsTwoTone";
 import axios from "axios";
 
 function App() {
@@ -104,9 +106,9 @@ function App() {
   function getWeather() {
     axios
       .get(
-        `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=dec0e12c272759881360e59f508b538c`
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=dec0e12c272759881360e59f508b538c`
       )
-      .then((result) => {
+      .then(result => {
         console.log(Math.floor(result.data.main.temp - 272));
         console.log(result.data);
         console.log(result.data.weather[0].main);
@@ -181,7 +183,7 @@ function Modal(props) {
         label="City"
         variant="filled"
         className="write"
-        onChange={(e) => {
+        onChange={e => {
           props.inputChange(e.target.value);
         }}
       />
@@ -191,6 +193,7 @@ function Modal(props) {
         className="change"
         onClick={() => {
           props.cityChange(props.input);
+          props.modalChange(!props.modal);
         }}
       >
         Change
@@ -244,6 +247,12 @@ function Weather(props) {
       {props.def === "Snow" ? <AcUnitIcon className="sunny" /> : null}
       {props.def === "Haze" ? <CloudTwoToneIcon className="sunny" /> : null}
       {props.def === "Fog" ? <CloudTwoToneIcon className="sunny" /> : null}
+      {props.def === "Mist" ? <CloudTwoToneIcon className="sunny" /> : null}
+      {props.def === "Rain" ? <UmbrellaIcon className="sunny" /> : null}
+
+      {props.def === "Drizzle" ? (
+        <InvertColorsTwoToneIcon className="sunny" />
+      ) : null}
     </div>
   );
 }
@@ -263,7 +272,7 @@ function Footer(props) {
       <div className="footer-container-2">
         <div className={props.clickDay[0]}>
           <p
-            onClick={(e) => {
+            onClick={e => {
               props.dayChange(0);
             }}
           >
@@ -272,7 +281,7 @@ function Footer(props) {
         </div>
         <div className={props.clickDay[1]}>
           <p
-            onClick={(e) => {
+            onClick={e => {
               props.dayChange(1);
             }}
           >
@@ -281,7 +290,7 @@ function Footer(props) {
         </div>
         <div className={props.clickDay[2]}>
           <p
-            onClick={(e) => {
+            onClick={e => {
               props.dayChange(2);
             }}
           >
@@ -295,6 +304,7 @@ function Footer(props) {
           <div className="eachtime">
             <span>10:00</span>
           </div>
+
           <div className="eachWeather">
             <LightModeOutlinedIcon className="sun" />
           </div>

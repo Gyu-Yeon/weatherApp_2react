@@ -24,7 +24,61 @@ $clouds: linear-gradient(#c8b5b3, #5c5a4e);
   position: relative;
   transition: all 2s;
 }
+.Fog {
+  margin: auto;
+  margin-top: 100px;
+  width: 378px;
+  height: 700px;
+  background: $rainyNight;
+  position: relative;
+  transition: all 2s;
+}
+.Rain {
+  margin: auto;
+  margin-top: 100px;
+  width: 378px;
+  height: 700px;
+  background: $windy;
+  position: relative;
+  transition: all 2s;
+}
+.Drizzle {
+  margin: auto;
+  margin-top: 100px;
+  width: 378px;
+  height: 700px;
+  background: $windy;
+  position: relative;
+  transition: all 2s;
+}
 .Clouds {
+  margin: auto;
+  margin-top: 100px;
+  width: 378px;
+  height: 700px;
+  background: $clouds;
+  position: relative;
+  transition: all 2s;
+}
+.Mist {
+  margin: auto;
+  margin-top: 100px;
+  width: 378px;
+  height: 700px;
+  background: $clouds;
+  position: relative;
+  transition: all 2s;
+}
+.Snow {
+  margin: auto;
+  margin-top: 100px;
+  width: 378px;
+  height: 700px;
+  background: $windyNight;
+  position: relative;
+  transition: all 2s;
+}
+.Haze {
   margin: auto;
   margin-top: 100px;
   width: 378px;
