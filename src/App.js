@@ -106,7 +106,7 @@ function App() {
   function getWeather() {
     axios
       .get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=dec0e12c272759881360e59f508b538c`
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid={apiKEY}`
       )
       .then(result => {
         console.log(Math.floor(result.data.main.temp - 272));
