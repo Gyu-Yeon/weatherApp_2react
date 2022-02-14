@@ -10,7 +10,7 @@
 
 <img src="1.jpg" width="330px" height="620px">   <img src="2.jpg" width="330px" height="620px">  <img src="3.jpg" width="330px" height="620px">
 - 각 국의 도시 날씨를 확인하고 싶을 때 이 웹앱을 활용하여 손쉽게 찾아볼 수 있습니다.
-
+-  Weather Api의 요금 부과로 인하여 하단부 어제, 오늘, 내일 날씨 섹션은 현재 작동하지 않음을 알려드립니다.
 
 
 
