@@ -97,13 +97,15 @@ $clouds: linear-gradient(#c8b5b3, #5c5a4e);
   top: 2%;
   left: 5%;
   color: white;
-  .write {
-    display: block;
+  .input {
+    width: 150px;
+    height: 25px;
+    display: flex;
     margin: auto;
     position: absolute;
-    top: 45%;
-    left: 19%;
-    background-color: rgb(253, 253, 253);
+    left: 28%;
+    top: 48%;
+    font-size: 20px;
   }
   .close {
     position: absolute;
