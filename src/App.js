@@ -140,7 +140,6 @@ function App() {
   useEffect(() => {
     timer();
     const remove = () => {
-      console.log(1);
       clearInterval();
     };
     return remove();
@@ -184,11 +183,4 @@ function App() {
   );
 }
 
-//Mist 추가하기
-
 export default App;
-
-// 기본페이지
-// 모달창 열어서 검색기능 추가
-// 도시이름으로 검색 하면 날씨 온도, ui, 이름 갖고오기.
-//
