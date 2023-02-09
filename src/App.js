@@ -1,5 +1,5 @@
 /* eslint-diabled*/
-import { React, useState, useEffect, useReducer } from "react";
+import { React, useState, useEffect } from "react";
 import "./App.css";
 import "./App.scss";
 import Modal from "./components/Modal";
@@ -11,13 +11,10 @@ import Footer from "./components/Footer";
 import axios from "axios";
 // import Modal from "bootstrap";
 
-// function reducer(state, action) {}
-
 function App() {
-  // const [state, dispatch] = useReducer(reducer);
-  let [city, cityChange] = useState("Seoul");
-  let [today, todayChange] = useState("");
-  let [week, weekChange] = useState([
+  const [city, cityChange] = useState("Seoul");
+  const [today, todayChange] = useState("");
+  const [week, weekChange] = useState([
     "Sunday",
     "Monday",
     "Tuesday",
@@ -26,7 +23,7 @@ function App() {
     "Friday",
     "Saturday",
   ]);
-  let [month, monthChange] = useState([
+  const [month, monthChange] = useState([
     "January",
     "Febuary",
     "March",
@@ -40,16 +37,14 @@ function App() {
     "November",
     "December",
   ]);
-  let [dateNum, dateNumChange] = useState("");
-  let [time, timeChange] = useState("");
-  let [hh, hhChange] = useState("");
-  let [mm, mmChange] = useState("");
-  let [modal, modalChange] = useState(false);
-  let [temp, tempChange] = useState(0);
-  let [clickDay, clickDayChange] = useState(["dateBox", "today", "dateBox"]);
-  let [input, inputChange] = useState("");
-  let [def, defChange] = useState("");
-  let [mainContainer, mainContainerChange] = useState("main-container");
+  const [dateNum, dateNumChange] = useState("");
+  const [time, timeChange] = useState("");
+  const [modal, modalChange] = useState(false);
+  const [temp, tempChange] = useState(0);
+  const [clickDay, clickDayChange] = useState(["dateBox", "today", "dateBox"]);
+  const [input, inputChange] = useState("");
+  const [def, defChange] = useState("");
+  const [mainContainer, mainContainerChange] = useState("main-container");
 
   // functions
   function todayy() {
@@ -58,27 +53,27 @@ function App() {
     let thisWeek = week[d.getDay()];
     let thisDate = d.getDate();
     if (thisDate === 1 || thisDate === 21 || thisDate === 31) {
-      dateNum = "st";
+      dateNumChange("st");
     } else if (thisDate === 2 || thisDate === 22) {
-      dateNum = "nd";
+      dateNumChange("nd");
     } else if (thisDate === 3) {
-      dateNum = "rd";
+      dateNumChange("rd");
     } else {
-      dateNum = "th";
+      dateNumChange("th");
     }
     todayChange(`${thisWeek}   ${thisDate}${dateNum}   ${thisMonth}`);
   }
   const dayChange = (num) => {
     if (num === 0) {
-      let days = ["today", "dateBox", "dateBox"];
+      const days = ["today", "dateBox", "dateBox"];
       clickDayChange([...days]);
     }
     if (num === 1) {
-      let days = ["dateBox", "today", "dateBox"];
+      const days = ["dateBox", "today", "dateBox"];
       clickDayChange([...days]);
     }
     if (num === 2) {
-      let days = ["dateBox", "dateBox", "today"];
+      const days = ["dateBox", "dateBox", "today"];
       clickDayChange([...days]);
     }
   };
@@ -101,22 +96,22 @@ function App() {
   const timer = () => {
     setInterval(() => {
       let dt = new Date();
-      hhChange((hh = dt.getHours()));
-      if (hh < 10) {
-        hhChange((hh = "0" + hh));
+      let hour = dt.getHours();
+      let minutes = dt.getMinutes();
+      if (hour < 10) {
+        hour = "0" + hour;
       }
-      mmChange((mm = dt.getMinutes()));
-      if (mm < 10) {
-        mmChange((mm = "0" + mm));
+      if (minutes < 10) {
+        minutes = "0" + minutes;
       }
-      timeChange(hh + ":" + mm);
+      timeChange(hour + ":" + minutes);
     }, 1000);
   };
 
   const getWeather = async () => {
     axios
       .get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid={apiKEY}`
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid={apiKey}`
       )
       .then((result) => {
         // console.log(Math.floor(result.data.main.temp - 272));
@@ -125,8 +120,9 @@ function App() {
         defChange(result.data.weather[0].main);
         tempChange(Math.floor(result.data.main.temp - 272));
       })
-      .catch(() => {
+      .catch((error) => {
         console.log("fuck");
+        console.log(error);
         alert("invalid city name");
         cityChange("Seoul");
       });
