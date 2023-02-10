@@ -14,7 +14,7 @@ import axios from "axios";
 function App() {
   const [city, cityChange] = useState("Seoul");
   const [today, todayChange] = useState("");
-  const [week, weekChange] = useState([
+  const week = [
     "Sunday",
     "Monday",
     "Tuesday",
@@ -22,8 +22,8 @@ function App() {
     "Thursday",
     "Friday",
     "Saturday",
-  ]);
-  const [month, monthChange] = useState([
+  ];
+  const month = [
     "January",
     "Febuary",
     "March",
@@ -36,7 +36,7 @@ function App() {
     "October",
     "November",
     "December",
-  ]);
+  ];
   const [dateNum, dateNumChange] = useState("");
   const [time, timeChange] = useState("");
   const [modal, modalChange] = useState(false);
@@ -63,6 +63,7 @@ function App() {
     }
     todayChange(`${thisWeek}   ${thisDate}${dateNum}   ${thisMonth}`);
   }
+
   const dayChange = (num) => {
     if (num === 0) {
       const days = ["today", "dateBox", "dateBox"];
@@ -111,7 +112,7 @@ function App() {
   const getWeather = async () => {
     axios
       .get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid={apiKey}`
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=dec0e12c272759881360e59f508b538c`
       )
       .then((result) => {
         // console.log(Math.floor(result.data.main.temp - 272));
