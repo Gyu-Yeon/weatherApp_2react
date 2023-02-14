@@ -46,7 +46,7 @@ function App() {
   const [def, defChange] = useState("");
   const [mainContainer, mainContainerChange] = useState("main-container");
 
-  // functions
+  /*functions*/
   function todayy() {
     let d = new Date();
     let thisMonth = month[d.getMonth()];
@@ -133,7 +133,7 @@ function App() {
     mainContainerChange(def);
   }
 
-  //useEffect
+  /*useEffect*/
   useEffect(() => {
     timer();
     const remove = () => {
@@ -154,7 +154,7 @@ function App() {
     todayy();
   }, []);
 
-  //components
+  /*components*/
   return (
     <div className="App">
       <div className={mainContainer}>
