@@ -1,8 +1,8 @@
 import { memo, useEffect, useState } from "react";
-import { TopProps } from "../types/types";
+import { DateNum, Month, Today, TopProps, Week } from "../types/types";
 import React from "react";
 
-const week = [
+const week: Week = [
   "Sunday",
   "Monday",
   "Tuesday",
@@ -11,7 +11,7 @@ const week = [
   "Friday",
   "Saturday",
 ];
-const month = [
+const month: Month = [
   "January",
   "Febuary",
   "March",
@@ -27,8 +27,8 @@ const month = [
 ];
 
 const Top = memo(({ city, def }: TopProps) => {
-  const [today, todayChange] = useState("");
-  const [dateNum, dateNumChange] = useState("");
+  const [today, todayChange] = useState<Today>("");
+  const [dateNum, dateNumChange] = useState<DateNum>("");
 
   function todayy() {
     let d = new Date();

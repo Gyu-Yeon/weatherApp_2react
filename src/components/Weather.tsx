@@ -4,9 +4,9 @@ import InvertColorsTwoToneIcon from "@mui/icons-material/InvertColorsTwoTone";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import CloudQueueIcon from "@mui/icons-material/CloudQueue";
 import AcUnitIcon from "@mui/icons-material/AcUnit";
-import React from "react";
+import React, { memo } from "react";
 
-export default function Weather({ def }) {
+const Weather = ({ def }) => {
   const weatherIcon = (def) => {
     switch (def) {
       case "Clouds":
@@ -48,4 +48,6 @@ export default function Weather({ def }) {
     }
   };
   return <div className="weather-container">{weatherIcon(def)}</div>;
-}
+};
+
+export default memo(Weather);

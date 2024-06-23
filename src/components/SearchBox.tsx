@@ -39,7 +39,7 @@ const SearchBox = ({ defChange, tempChange, cityChange }: SearchBoxProps) => {
   }, []);
 
   return (
-    <div className="footer-container">
+    <section className="footer-container">
       <form
         onSubmit={(e) => {
           onSubmitHandle(e, input);
@@ -66,7 +66,7 @@ const SearchBox = ({ defChange, tempChange, cityChange }: SearchBoxProps) => {
           </Button>
         </div>
       </form>
-    </div>
+    </section>
   );
 };
 

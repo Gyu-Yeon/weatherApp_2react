@@ -17,3 +17,9 @@ export type TempProps = {
 export type City = string;
 export type Temp = number;
 export type Def = string;
+
+export type Week = string[];
+export type Month = string[];
+
+export type Today = string;
+export type DateNum = string;
